@@ -73,7 +73,7 @@ class TeamFlowy(object):
         self.tb = Teambition(self.tb_client_id,
                              self.tb_client_secret)
         authorize_url = self.tb.oauth.get_authorize_url('https://kingname.info')
-        print(f'Please open this url: {authorize_url} in web browser and then copy the `code` and input below: \n')
+        print('Please open this url: {authorize_url} in web browser and then copy the `code` and input below: \n'.format(authorize_url=authorize_url))
         code = input('input the `code` here: ')
         fetch_result_dict = self.session.post('https://account.teambition.com/oauth2/access_token',
                                               data={'client_id': self.tb_client_id,
@@ -83,7 +83,7 @@ class TeamFlowy(object):
         self.tb_access_token = fetch_result_dict.get('access_token', '')
         if self.tb_access_token:
             self.login_tb()
-            print(f'the latest access token is: {self.tb_access_token}\n update the config.')
+            print('the latest access token is: {tb_access_token}\n update the config.'.format(tb_access_token=self.tb_access_token))
             self.update_config()
             return True
         else:
@@ -112,7 +112,7 @@ class TeamFlowy(object):
         task_dict = {}
         print('start to extract the task to be added...')
         self.extract_task(project_list, task_dict)
-        print(f'the tasks to be added are: {task_dict}')
+        print('the tasks to be added are: {task_dict}'.format(task_dict=task_dict))
         return task_dict
 
     def extract_task(self, sections, task_dict, target_section=False):
@@ -136,7 +136,8 @@ class TeamFlowy(object):
             task_id = task_info['_id']
             for sub_task_name in sub_task_list:
                 self.tb.subtasks.create(sub_task_name, task_id=task_id)
-        print(f'task: {task_name} with sub tasks: {sub_task_list} added.')
+        print('task: {task_name} with sub tasks: {sub_task_list} added.'.format(task_name=task_name,
+                                                                                sub_task_list=sub_task_list))
 
 if __name__ == '__main__':
     team_flowy = TeamFlowy()

@@ -240,6 +240,6 @@ tb = Teambition(tb_client_id,
 
 ![](http://7sbpmp.com1.z0.glb.clouddn.com/2017-10-04-16-55-34.png)
 
-将代码组合起来并进行完善，让代码更容易使用，完整的代码可以查看[https://github.com/kingname/TeamFlowy](https://github.com/kingname/TeamFlowy)。完整的代码运行效果如下图所示。
+将代码组合起来并进行完善，让代码更容易使用，完整的代码可以查看[https://github.com/kingname/TeamFlowy](https://github.com/kingname/TeamFlowy)。代码需要使用Python 3运行。完整的代码运行效果如下图所示。
 
 ![](http://7sbpmp.com1.z0.glb.clouddn.com/2017-10-04-17-01-11.png)
