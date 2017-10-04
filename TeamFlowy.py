@@ -64,6 +64,7 @@ class TeamFlowy(object):
             self.tb = Teambition(self.tb_client_id,
                                  self.tb_client_secret,
                                  access_token=self.tb_access_token)
+            return True
         else:
             print('refetch the access token.')
             self.fetch_access_token()
@@ -71,14 +72,14 @@ class TeamFlowy(object):
     def fetch_access_token(self):
         self.tb = Teambition(self.tb_client_id,
                              self.tb_client_secret)
-        authorize_url = self.tb.oauth.get_authorize_url('localhost')
+        authorize_url = self.tb.oauth.get_authorize_url('https://kingname.info')
         print(f'Please open this url: {authorize_url} in web browser and then copy the `code` and input below: \n')
         code = input('input the `code` here: ')
         fetch_result_dict = self.session.post('https://account.teambition.com/oauth2/access_token',
-                                                  data={'client_id': self.tb_client_id,
-                                                        'client_secret': self.tb_client_secret,
-                                                        'code': code,
-                                                        'grant_type': 'code'}).json()
+                                              data={'client_id': self.tb_client_id,
+                                                    'client_secret': self.tb_client_secret,
+                                                    'code': code,
+                                                    'grant_type': 'code'}).json()
         self.tb_access_token = fetch_result_dict.get('access_token', '')
         if self.tb_access_token:
             self.login_tb()
@@ -141,6 +142,7 @@ if __name__ == '__main__':
     team_flowy = TeamFlowy()
     if team_flowy.login_in_workflowy():
         task_dict = team_flowy.get_outline()
+        print(task_dict)
         if team_flowy.login_tb():
             print('start to create tasks into teambition...')
             for task_name, sub_task_list in task_dict.items():

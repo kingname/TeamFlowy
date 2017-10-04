@@ -1,0 +1,12 @@
+{
+    "Workflowy": {
+        "username": "123456@kingname.info",
+        "password": "8888888"
+    },
+    "Teambition": {
+        "client_id": "9a423420-4342-11e7-8c84-d95f23424e1b",
+        "client_secret": "fc23426b-b81b-4e2c-8613-9e534524272d1",
+        "access_token": "",
+        "callback": "https://kingname.info"
+    }
+}
